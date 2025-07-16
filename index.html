@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual Text Areas Comparison Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .text-areas-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .text-area-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .text-area-label {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+            padding: 10px;
+            background: linear-gradient(45deg, #f0f2f5, #e9ecef);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .text-area {
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .text-area:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #f44336, #e53935);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #e53935, #f44336);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+        
+        .results-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+        }
+        
+        .results-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-section {
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .sheet1-unique .section-title {
+            background: linear-gradient(45deg, #ffeb3b, #ffc107);
+            color: #333;
+        }
+        
+        .sheet2-unique .section-title {
+            background: linear-gradient(45deg, #03dac6, #018786);
+            color: white;
+        }
+        
+        .includes-section, .excludes-section {
+            margin-bottom: 15px;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .includes-section .subsection-title {
+            color: #4CAF50;
+        }
+        
+        .excludes-section .subsection-title {
+            color: #f44336;
+        }
+        
+        .item-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .item-list li {
+            background: #f8f9fa;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border-left: 4px solid #ddd;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .includes-section .item-list li {
+            border-left-color: #4CAF50;
+        }
+        
+        .excludes-section .item-list li {
+            border-left-color: #f44336;
+        }
+        
+        .no-differences {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .text-areas-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Dual Text Comparison Tool</h1>
+            <p>Compare include/exclude sections between Sheet1 and Sheet2 content</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="text-areas-container">
+                <div class="text-area-wrapper">
+                    <div class="text-area-label">Sheet1 Content ("This class includes/excludes" format)</div>
+                    <textarea id="sheet1Text" class="text-area" placeholder="Paste your Sheet1 content here...&#10;&#10;Example:&#10;This class includes:&#10;- Item 1&#10;- Item 2&#10;&#10;This class excludes:&#10;- Item 3&#10;- Item 4"></textarea>
+                </div>
+                
+                <div class="text-area-wrapper">
+                    <div class="text-area-label">Sheet2 Content ("Include/Exclude" format)</div>
+                    <textarea id="sheet2Text" class="text-area" placeholder="Paste your Sheet2 content here...&#10;&#10;Example:&#10;Include:&#10;- Item 1&#10;- Item 5&#10;&#10;Exclude:&#10;- Item 3&#10;- Item 6"></textarea>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="compareBtn" class="btn btn-primary">🔍 Compare Texts</button>
+                <button id="clearBtn" class="btn btn-secondary">🗑️ Clear All</button>
+            </div>
+            
+            <div id="resultsContainer" class="results-container" style="display: none;">
+                <div class="results-title">📋 Comparison Results</div>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TextComparator {
+            constructor() {
+                this.sheet1Text = document.getElementById('sheet1Text');
+                this.sheet2Text = document.getElementById('sheet2Text');
+                this.compareBtn = document.getElementById('compareBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.resultsContainer = document.getElementById('resultsContainer');
+                this.resultsContent = document.getElementById('resultsContent');
+                
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                this.compareBtn.addEventListener('click', () => this.compareTexts());
+                this.clearBtn.addEventListener('click', () => this.clearAll());
+            }
+            
+            // Simple sequence similarity function (JavaScript implementation of difflib-like functionality)
+            calculateSimilarity(a, b) {
+                a = a.toLowerCase().trim();
+                b = b.toLowerCase().trim();
+                
+                if (a === b) return 1.0;
+                
+                const longer = a.length > b.length ? a : b;
+                const shorter = a.length > b.length ? b : a;
+                
+                if (longer.length === 0) return 1.0;
+                
+                return (longer.length - this.editDistance(longer, shorter)) / longer.length;
+            }
+            
+            editDistance(s1, s2) {
+                const costs = [];
+                for (let i = 0; i <= s2.length; i++) {
+                    let lastValue = i;
+                    for (let j = 0; j <= s1.length; j++) {
+                        if (i === 0) {
+                            costs[j] = j;
+                        } else {
+                            if (j > 0) {
+                                let newValue = costs[j - 1];
+                                if (s1.charAt(j - 1) !== s2.charAt(i - 1)) {
+                                    newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                                }
+                                costs[j - 1] = lastValue;
+                                lastValue = newValue;
+                            }
+                        }
+                    }
+                    if (i > 0) {
+                        costs[s1.length] = lastValue;
+                    }
+                }
+                return costs[s1.length];
+            }
+            
+            extractIncludesExcludes(text, format) {
+                const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+                const result = { includes: [], excludes: [] };
+                
+                let currentSection = null;
+                let inIncludesSection = false;
+                let inExcludesSection = false;
+                
+                for (const line of lines) {
+                    const lowerLine = line.toLowerCase();
+                    
+                    if (format === 'sheet1') {
+                        // Handle "This class includes/excludes" format
+                        if (lowerLine.includes('includes:') || lowerLine.includes('include:')) {
+                            inIncludesSection = true;
+                            inExcludesSection = false;
+                            continue;
+                        } else if (lowerLine.includes('excludes:') || lowerLine.includes('exclude:')) {
+                            inExcludesSection = true;
+                            inIncludesSection = false;
+                            continue;
+                        }
+                    } else {
+                        // Handle "Include/Exclude" format
+                        if (lowerLine.startsWith('include:') || lowerLine === 'include' || lowerLine === 'includes') {
+                            inIncludesSection = true;
+                            inExcludesSection = false;
+                            continue;
+                        } else if (lowerLine.startsWith('exclude:') || lowerLine === 'exclude' || lowerLine === 'excludes') {
+                            inExcludesSection = true;
+                            inIncludesSection = false;
+                            continue;
+                        }
+                    }
+                    
+                    // Extract items (remove bullet points, numbers, etc.)
+                    if (inIncludesSection || inExcludesSection) {
+                        let cleanLine = line.replace(/^[-•*\d+.\s]+/, '').trim();
+                        if (cleanLine && cleanLine.length > 1) {
+                            if (inIncludesSection) {
+                                result.includes.push(cleanLine);
+                            } else if (inExcludesSection) {
+                                result.excludes.push(cleanLine);
+                            }
+                        }
+                    }
+                }
+                
+                return result;
+            }
+            
+            findUniqueItems(items1, items2, threshold = 0.8) {
+                const unique = [];
+                
+                for (const item1 of items1) {
+                    let isUnique = true;
+                    for (const item2 of items2) {
+                        if (this.calculateSimilarity(item1, item2) >= threshold) {
+                            isUnique = false;
+                            break;
+                        }
+                    }
+                    if (isUnique) {
+                        unique.push(item1);
+                    }
+                }
+                
+                return unique;
+            }
+            
+            compareTexts() {
+                const text1 = this.sheet1Text.value.trim();
+                const text2 = this.sheet2Text.value.trim();
+                
+                if (!text1 || !text2) {
+                    alert('Please enter text in both areas before comparing.');
+                    return;
+                }
+                
+                const sheet1Data = this.extractIncludesExcludes(text1, 'sheet1');
+                const sheet2Data = this.extractIncludesExcludes(text2, 'sheet2');
+                
+                const comparison = {
+                    sheet1Unique: {
+                        includes: this.findUniqueItems(sheet1Data.includes, sheet2Data.includes),
+                        excludes: this.findUniqueItems(sheet1Data.excludes, sheet2Data.excludes)
+                    },
+                    sheet2Unique: {
+                        includes: this.findUniqueItems(sheet2Data.includes, sheet1Data.includes),
+                        excludes: this.findUniqueItems(sheet2Data.excludes, sheet1Data.excludes)
+                    }
+                };
+                
+                this.displayResults(comparison);
+            }
+            
+            displayResults(comparison) {
+                const hasAnyDifferences = 
+                    comparison.sheet1Unique.includes.length > 0 ||
+                    comparison.sheet1Unique.excludes.length > 0 ||
+                    comparison.sheet2Unique.includes.length > 0 ||
+                    comparison.sheet2Unique.excludes.length > 0;
+                
+                if (!hasAnyDifferences) {
+                    this.resultsContent.innerHTML = `
+                        <div class="no-differences">
+                            ✅ No significant differences found!<br>
+                            The include/exclude sections are very similar between both sheets.
+                        </div>
+                    `;
+                } else {
+                    let html = '';
+                    
+                    // Sheet1 unique items
+                    if (comparison.sheet1Unique.includes.length > 0 || comparison.sheet1Unique.excludes.length > 0) {
+                        html += `
+                            <div class="comparison-section sheet1-unique">
+                                <div class="section-title">📄 Items only in Sheet1</div>
+                                ${this.generateSectionHTML(comparison.sheet1Unique)}
+                            </div>
+                        `;
+                    }
+                    
+                    // Sheet2 unique items
+                    if (comparison.sheet2Unique.includes.length > 0 || comparison.sheet2Unique.excludes.length > 0) {
+                        html += `
+                            <div class="comparison-section sheet2-unique">
+                                <div class="section-title">📄 Items only in Sheet2</div>
+                                ${this.generateSectionHTML(comparison.sheet2Unique)}
+                            </div>
+                        `;
+                    }
+                    
+                    this.resultsContent.innerHTML = html;
+                }
+                
+                this.resultsContainer.style.display = 'block';
+                this.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            generateSectionHTML(data) {
+                let html = '';
+                
+                if (data.includes.length > 0) {
+                    html += `
+                        <div class="includes-section">
+                            <div class="subsection-title">✅ Includes (${data.includes.length} items):</div>
+                            <ul class="item-list">
+                                ${data.includes.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                if (data.excludes.length > 0) {
+                    html += `
+                        <div class="excludes-section">
+                            <div class="subsection-title">❌ Excludes (${data.excludes.length} items):</div>
+                            <ul class="item-list">
+                                ${data.excludes.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                if (html === '') {
+                    html = '<div style="text-align: center; color: #666; font-style: italic;">No unique items in this section.</div>';
+                }
+                
+                return html;
+            }
+            
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            clearAll() {
+                this.sheet1Text.value = '';
+                this.sheet2Text.value = '';
+                this.resultsContainer.style.display = 'none';
+                this.resultsContent.innerHTML = '';
+            }
+        }
+        
+        // Initialize the application when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new TextComparator();
+        });
+    </script>
+</body>
+</html>
