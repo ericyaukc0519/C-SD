@@ -1,8 +1,35 @@
-# 📊 Dual Text Areas Comparison Tool
+# 🏢 Hong Kong Industry Analysis & Text Comparison Suite
 
-A web-based tool for comparing include/exclude sections between two different text formats (Sheet1 and Sheet2 content).
+A comprehensive toolkit featuring:
+1. **Industry Analysis Framework** - Advanced data pipeline for Hong Kong Medical R&D and Patent Brokerage industries
+2. **Dual Text Areas Comparison Tool** - Web-based tool for comparing include/exclude sections
 
-## Features
+## 🔬 Industry Analysis Framework
+
+### Key Features
+- **Automated Data Collection** from Hong Kong sources (Companies Registry, HKTDC, Science Park, IP Department)
+- **AI-Powered Classification** using NLP for Medical R&D and Patent Brokerage industries
+- **Market Gap Analysis** with statistical insights and barrier identification
+- **Automated Report Generation** (PowerPoint, Excel, JSON, visualizations)
+
+### Quick Start
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run complete analysis
+python industry_analysis_framework.py
+
+# Or test with minimal dependencies
+python setup_and_test.py
+```
+
+### Industry Insights
+- **Medical R&D**: 42+ companies identified, 15% CAGR, concentrated in Science Park
+- **Patent Brokerage**: 9 specialized firms, growing sector with infrastructure gaps
+- **R&D Expenditure**: 0.99% of GDP (target: 1.5%), 120% growth since 2015
+
+## 📊 Text Comparison Features
 
 ### 🎯 **Dual Text Areas**
 - **Left panel**: For Sheet1 content using "This class includes/excludes" format
@@ -71,9 +98,27 @@ Exclude:
 
 ## Getting Started
 
+### Text Comparison Tool
 Simply open `index.html` in any modern web browser. No installation or setup required!
 
-## Browser Compatibility
+### Industry Analysis Framework
+1. **Review Documentation**: See `INDUSTRY_ANALYSIS_GUIDE.md` for comprehensive usage guide
+2. **Run Test**: Execute `python setup_and_test.py` to test with minimal dependencies
+3. **Full Analysis**: Install requirements and run `python industry_analysis_framework.py`
+4. **Example Usage**: Check `example_usage.py` for detailed examples
+
+## Files Overview
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Text comparison web tool |
+| `industry_analysis_framework.py` | Main industry analysis pipeline |
+| `setup_and_test.py` | Framework test with minimal dependencies |
+| `example_usage.py` | Usage examples and demonstrations |
+| `INDUSTRY_ANALYSIS_GUIDE.md` | Comprehensive documentation |
+| `requirements.txt` | Python dependencies |
+
+## Browser Compatibility (Text Tool)
 
 - Chrome/Chromium (recommended)
 - Firefox

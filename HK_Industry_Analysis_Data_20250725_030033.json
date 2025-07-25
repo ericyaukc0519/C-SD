@@ -1,0 +1,141 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-07-25T03:00:33.323086",
+    "total_companies": 11,
+    "framework_version": "1.0.0"
+  },
+  "industry_distribution": {
+    "other": 2,
+    "medical_rd": 4,
+    "patent_brokerage": 5
+  },
+  "companies": [
+    {
+      "name": "HKSTP Biotech Accelerator",
+      "location": "Science Park, Shatin",
+      "description": "Incubates 150+ medtech startups focusing on precision medicine and clinical research",
+      "category": "medical",
+      "website": "https://www.hkstp.org",
+      "employees": "50-100",
+      "founded": "2015",
+      "data_source": "science_park",
+      "ai_classification": "other",
+      "confidence": 0.1
+    },
+    {
+      "name": "ImmunoDiagnostics Limited",
+      "location": "Science Park, Shatin",
+      "description": "COVID-19 test kit R&D and infectious disease diagnostics development",
+      "category": "medical",
+      "website": "https://immunodiagnostics.com.hk",
+      "employees": "20-50",
+      "founded": "2018",
+      "data_source": "science_park",
+      "ai_classification": "other",
+      "confidence": 0.1
+    },
+    {
+      "name": "Cirina Limited",
+      "location": "Science Park, Shatin",
+      "description": "CUHK spin-off specializing in cancer early detection technology and biomedical research",
+      "category": "medical",
+      "website": "https://cirina.com.hk",
+      "employees": "10-20",
+      "founded": "2019",
+      "data_source": "science_park",
+      "ai_classification": "medical_rd",
+      "confidence": 0.2
+    },
+    {
+      "name": "Rouse Hong Kong",
+      "location": "Central, Hong Kong",
+      "description": "IP valuation for medtech patents and cross-border patent licensing services",
+      "category": "patent",
+      "website": "https://rouse.com",
+      "employees": "50-100",
+      "founded": "2010",
+      "data_source": "patent_data",
+      "ai_classification": "patent_brokerage",
+      "confidence": 0.5714285714285714
+    },
+    {
+      "name": "Banner Witcoff Hong Kong",
+      "location": "Wanchai, Hong Kong",
+      "description": "Cross-border patent licensing and intellectual property portfolio management",
+      "category": "patent",
+      "website": "https://bannerwitcoff.com",
+      "employees": "20-50",
+      "founded": "2012",
+      "data_source": "patent_data",
+      "ai_classification": "patent_brokerage",
+      "confidence": 0.42857142857142855
+    },
+    {
+      "name": "TechTransfer HK Limited",
+      "location": "Pokfulam, Hong Kong",
+      "description": "HKU subsidiary for university patent commercialization and technology transfer",
+      "category": "patent",
+      "website": "https://tt.hku.hk",
+      "employees": "10-20",
+      "founded": "2008",
+      "data_source": "patent_data",
+      "ai_classification": "patent_brokerage",
+      "confidence": 0.2857142857142857
+    },
+    {
+      "name": "BioMed Innovations HK",
+      "description": "Pharmaceutical research and biomedical device development",
+      "category": "medical",
+      "source": "hktdc",
+      "data_source": "hktdc_directory",
+      "ai_classification": "medical_rd",
+      "confidence": 0.3
+    },
+    {
+      "name": "IP Strategy Consultants",
+      "description": "Patent licensing and intellectual property brokerage services",
+      "category": "patent",
+      "source": "hktdc",
+      "data_source": "hktdc_directory",
+      "ai_classification": "patent_brokerage",
+      "confidence": 0.5714285714285714
+    },
+    {
+      "name": "MedTech Solutions Asia",
+      "description": "Clinical research and medical technology development",
+      "category": "medical",
+      "source": "hktdc",
+      "data_source": "hktdc_directory",
+      "ai_classification": "medical_rd",
+      "confidence": 0.2
+    },
+    {
+      "name": "Hong Kong Biotechnology Research Institute",
+      "registration_number": "CR12345678",
+      "business_nature": "Research and experimental development on biotechnology and clinical trials",
+      "category": "medical",
+      "location": "Hong Kong Island",
+      "data_source": "companies_registry",
+      "ai_classification": "medical_rd",
+      "confidence": 0.3
+    },
+    {
+      "name": "Asia Pacific Patent Services",
+      "registration_number": "CR87654321",
+      "business_nature": "Intellectual property consulting services and patent brokerage",
+      "category": "patent",
+      "location": "Kowloon",
+      "data_source": "companies_registry",
+      "ai_classification": "patent_brokerage",
+      "confidence": 0.42857142857142855
+    }
+  ],
+  "recommendations": [
+    "Establish dedicated HSIC codes for Medical R&D (7210.2) and Patent Brokerage (6619.5)",
+    "Create government-backed IP valuation certification program",
+    "Develop specialized biomedical research zones with regulatory fast-tracking",
+    "Launch patent engineer training programs in partnership with universities",
+    "Establish centralized IP trading platform similar to Singapore's IP marketplace",
+    "Increase R&D expenditure target to 1.5% of GDP to match regional competitors"
+  ]
+}
