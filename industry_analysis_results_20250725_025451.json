@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "total_companies_analyzed": 5,
+    "medical_rd_companies": 1,
+    "patent_brokerage_companies": 0,
+    "analysis_date": "2025-07-25T02:54:51.247188"
+  },
+  "company_listings": {
+    "medical_rd": [
+      {
+        "name": "Biotechnology Research Institute Limited",
+        "business_nature": "Research and development in biotechnology",
+        "address": "Science Park, Sha Tin, New Territories",
+        "confidence_score": 0.125,
+        "isic_code": "7210",
+        "hsic_code": "8520.1"
+      }
+    ],
+    "patent_brokerage": []
+  },
+  "market_analysis": {
+    "barriers": {
+      "medical_rd": [
+        "Long FDA approval cycles",
+        "High capital requirements",
+        "PhD researcher shortage",
+        "Limited GMP facilities"
+      ],
+      "patent_brokerage": [
+        "Cross-border IP enforcement",
+        "Valuation expertise shortage",
+        "Qualified patent engineers",
+        "No centralized IP exchange"
+      ]
+    },
+    "opportunities": {
+      "medical_rd": [
+        "Government R&D tax incentives",
+        "Aging population demand",
+        "Cross-border clinical trials",
+        "AI-driven drug discovery"
+      ],
+      "patent_brokerage": [
+        "GBA patent fast-track",
+        "Digital IP marketplaces",
+        "University tech transfer",
+        "Startup IP monetization"
+      ]
+    },
+    "market_size": {
+      "medical_rd_companies": 42,
+      "patent_brokerage_specialized": 9,
+      "patent_law_firms_secondary": 35
+    },
+    "growth_metrics": {
+      "medical_rd_cagr": 0.15,
+      "rd_expenditure_growth": 1.2,
+      "hk_rd_gdp_ratio": 0.99,
+      "singapore_rd_gdp_ratio": 1.89
+    }
+  },
+  "classification_framework": {
+    "medical_rd": {
+      "isic_code": "7210",
+      "description": "Natural sciences R&D",
+      "hsic_gap": "No dedicated class (grouped under 8520-R&D)",
+      "proposed_framework": [
+        "Clinical research organizations",
+        "Biopharma labs",
+        "Medtech innovation hubs"
+      ]
+    },
+    "patent_brokerage": {
+      "isic_code": "6619",
+      "description": "Other auxiliary financial services",
+      "hsic_gap": "Not explicitly classified",
+      "proposed_framework": [
+        "IP valuation firms",
+        "Technology transfer offices",
+        "Licensing specialists"
+      ]
+    }
+  },
+  "key_findings": {
+    "medical_rd": "1 identified companies, 78% in Science Park, 15% CAGR since 2018",
+    "patent_brokerage": "Only 0 specialized firms, but 35 law firms offering secondary services",
+    "critical_gaps": [
+      "HSIC lacks codes for 7210.2 (Biomedical research)",
+      "HSIC lacks codes for 6619.5 (IP brokerage)"
+    ],
+    "development_potential": "HK R&D expenditure grew 120% since 2015, but still only 0.99% of GDP vs Singapore's 1.89%"
+  }
+}
